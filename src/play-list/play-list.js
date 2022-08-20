@@ -5,7 +5,7 @@ const playlist = [
     },
     {   title: 'Aqua Caelestis',
         src:'../../sounds/Aqua Caelestis.mp3',
-        duration: '00:58'
+        duration: '00:39'
     }
     
 ]

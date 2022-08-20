@@ -6,7 +6,7 @@ import setTime from './plugin/time/time'
 import setDate from './plugin/date/date'
 import setName from './plugin/setName/setName'
 import setQuotes from './plugin/quotes/quotes'
-import {addActiveTrack,addPlayListHTML,playListLength,playTrack} from './plugin/player/player'
+import {addActiveTrack,addPlayListHTML,playListLength,playTrack,setTrackTimeNow,pauseSetTrackTimeNow,setTrackTimeStart} from './plugin/player/player'
 
 
 
@@ -36,31 +36,53 @@ changeQuoteBtn.addEventListener('click' , ()=>{
 
 let count = 0
 let playSong = false
+let audio = playTrack(count)
 btnPlay.addEventListener('click', ()=>{
     addActiveTrack(count)
+    
     if(!playSong){
         playSong = true
+        audio.play()
+        setTrackTimeNow(audio)
+        
     }
     else{
         playSong = false
+        audio.pause()
+        pauseSetTrackTimeNow()
     }
-    playTrack(count,playSong)
+    // playTrack(count)
+    // console.log(playTrack(count))
 })
 btnNextSongPlay.addEventListener('click' , ()=>{
+    
+    setTrackTimeStart()
+    audio.pause()
+    audio.currentTime = 0.0
+    
     count++
     playSong = true
     if(count>=playListLength()){
         count = 0
     }
+   
+    audio = playTrack(count)
+    audio.play()
     addActiveTrack(count)
-    playTrack(count,playSong)
+    setTrackTimeNow(audio)
 })
 btnPrevSongPlay.addEventListener('click' , ()=>{
+    audio.pause()
+    audio.currentTime = 0.0
+    playSong = true
     count--
     if(count<0){
         count = playListLength() - 1
     }
+    audio = playTrack(count)
+    audio.play()
     addActiveTrack(count)
+    setTrackTimeNow(audio)
 })
 
 

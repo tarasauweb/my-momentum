@@ -24,7 +24,7 @@ async function addBackGround(){
         timeDayUrl = objTimeUrl.afternoon
     }
     else if(hourNow>17 && hourNow<24){
-        timeDayUrl = objTimeUrl.urlEvening
+        timeDayUrl = objTimeUrl.evening
     }
     else if(hourNow>0&&hourNow<6){
         timeDayUrl = objTimeUrl.night
